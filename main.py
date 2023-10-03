@@ -10,7 +10,7 @@ class Staff(Widget):
 
 class TickLineMetronomeApp(App):
     def build(self):
-	return Staff()
+        return Staff()
 		
 if __name__ == '__main__':
-	TickLineMetronomeApp().run()
+    TickLineMetronomeApp().run()
