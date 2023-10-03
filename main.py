@@ -3,11 +3,14 @@ kivy.require('2.1.1')
 
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.widget import Widget
 
-class Pierronome(App):
+class Staff(Widget):
+    pass
 
-	def build(self):
-		return Label(text='Hello world')
+class TickLineMetronomeApp(App):
+    def build(self):
+	return Staff()
 		
 if __name__ == '__main__':
-	Pierronome().run()
+	TickLineMetronomeApp().run()
