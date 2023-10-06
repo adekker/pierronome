@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = My Application
+title = ClickTrack
 
 # (str) Package name
-package.name = TickLineMetronome
+package.name = ClickTrack
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.test
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3==3.10.11,hostpython3==3.10.11,kivy,pillow
+requirements = python3,kivy==2.1.1
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -64,10 +64,10 @@ orientation = portrait
 # author = © Copyright Info
 
 # change the major version of python used by the app
-osx.python_version = 3.10.11
+osx.python_version = 3
 
 # Kivy version to use
-osx.kivy_version = 2.1.1
+osx.kivy_version = 1.9.1
 
 #
 # Android specific
