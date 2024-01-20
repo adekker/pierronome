@@ -1,0 +1,295 @@
+<MyW>
+    notation: root.notation
+    BoxLayout:
+        pos_hint: {'x':0, 'top':1}
+        size_hint_y: None
+        height: root.top_bar_height
+        canvas.before:
+            Color:
+                rgba: 0.835, 0.714, 0.871, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        padding: 8
+        spacing: 8
+        id: buttons
+        Image:
+            source: './images/menu_logo.png'
+            size_hint_x: None
+            width: root.top_bar_height  # square
+        Button:
+            text: 'Music Input'
+            id: music
+            on_press: root.re_play()
+        Button:
+            text: 'Metronome'
+            id: metronome
+            background_color: [0,0.25,0,1]
+    BoxLayout:  ## music notation
+        orientation: 'vertical'
+        on_touch_down: root.on_screen_touch(self)
+        pos_hint: {'x':0, 'bottom':0}
+        size_hint_y: None
+        height: root.window_height - root.top_bar_height
+        canvas.before:
+            Color:
+                rgba: 1,1,1,0.95
+            Rectangle:
+                pos: self.pos
+                size: self.width, self.height
+        StackLayout:  ## music notation starts here
+            id: notation
+            orientation: 'lr-tb'
+            #NotationImage:
+            #    source: './images/note_1.png'
+            #    canvas.after:
+            #        Color:
+            #            rgba: 0,0,0,1
+            #        Line:
+            #            points: self.x, self.y + 2, self.x, self.y + self.size[1] - 2
+            #            width: 2
+            #NotationImage:
+            #    source: './images/note_2.png'
+    BoxLayout: ## Slider part
+        orientation: 'vertical'
+        pos_hint: {'x':0, 'y':root.keyboard_position/root.window_height}
+        size_hint_y: None
+        height: root.keyboard_height + root.message_height
+        BoxLayout: ## mesage bar
+            height: root.message_height
+            background_color: 0.768, 0.584, 0.706, 1
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            AnchorLayout:
+                anchor_x: 'center'
+                Label:
+                    color: 0, 0, 0, 1
+                    text: '{self.pos_y}'
+                    size_hint: None,None
+                    size: root.message_height, root.message_height
+            AnchorLayout:
+                anchor_x: 'right'
+                Button:
+                    padding: 0
+                    id: close_keyboard
+                    size_hint: None, 1
+                    width: root.message_height
+                    color: 0,0,0,1
+                    text: 'X'
+                    font_size: 24
+                    background_normal: ''
+                    background_color: 0.835*1.1, 0.714*1.1, 0.871*1.1, 1
+                    on_press: root.hide_keyboards()
+        BoxLayout:  ## keyboard
+            orientation: 'vertical'
+            size_hint_y: None
+            height: root.keyboard_height
+            background_color: (0.835, 0.714, 0.871, 1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            BoxLayout: ## first keys row
+                size_hint_y: None
+                height: root.key_height + 10 + 10
+                padding: 10
+                spacing: 10
+                BoxLayout:
+                KeyboardButton:
+                    background_normal: './images/blank_key.png'
+                    text: '1'
+                    tag: self.text
+                KeyboardButton:
+                    background_normal: './images/blank_key.png'
+                    text: '2'
+                    tag: self.text
+                KeyboardButton:
+                    background_normal: './images/blank_key.png'
+                    text: '3'
+                    tag: self.text
+                KeyboardButton:
+                    text: '4'
+                    tag: self.text
+                KeyboardButton:
+                    text: '5'
+                    tag: self.text
+                KeyboardButton:
+                    text: '6'
+                    tag: self.text
+                KeyboardButton:
+                    text: '7'
+                    tag: self.text
+                KeyboardButton:
+                    text: '8'
+                    tag: self.text
+                KeyboardButton:
+                    text: '9'
+                    tag: self.text
+                KeyboardButton:
+                    text: '0'
+                    tag: self.text
+                BoxLayout:
+            BoxLayout:  ## second key row
+                size_hint_y: None
+                height: root.key_height + 10 + 10
+                padding: 10
+                spacing: 10
+                BoxLayout:
+                KeyboardButton:
+                    background_normal: './images/key_note_1.png'
+                    tag: 'n1'
+                    duration: 1
+                    note: True
+                KeyboardButton:
+                    tag: 'n2'
+                    background_normal: './images/key_note_2.png'
+                    duration: 2
+                    note: True
+                KeyboardButton:
+                    tag: 'n4'
+                    background_normal: './images/key_note_4.png'
+                    duration: 4
+                    note: True
+                KeyboardButton:
+                    tag: 'n8'
+                    background_normal: './images/key_note_8.png'
+                    duration: 8
+                    note: True
+                KeyboardButton:
+                    tag: 'n16'
+                    background_normal: './images/key_note_16.png'
+                    duration: 16
+                    note: True
+                KeyboardButton:
+                    tag: 'n32'
+                    background_normal: './images/key_note_32.png'
+                    duration: 32
+                    note: True
+                KeyboardButton:
+                    tag: 'n64'
+                    background_normal: './images/key_note_64.png'
+                    duration: 64
+                    note: True
+                KeyboardButton:
+                    background_normal: './images/key_tuplet.png'
+                KeyboardButton:
+                    background_normal: './images/key_backspace.png'
+                BoxLayout:
+            BoxLayout: ## third row
+                size_hint_y: None
+                height: root.key_height + 10 + 10
+                padding: 10
+                spacing: 10
+                BoxLayout:
+                KeyboardButton:
+                    tag: 's1'
+                    background_normal: './images/key_silent_1.png'
+                    duration: 1
+                    note: False
+                KeyboardButton:
+                    tag: 's2'
+                    background_normal: './images/key_silent_2.png'
+                    duration: 2
+                    note: False
+                KeyboardButton:
+                    tag: 's4'
+                    background_normal: './images/key_silent_4.png'
+                    duration: 4
+                    note: False
+                KeyboardButton:
+                    tag: 's8'
+                    background_normal: './images/key_silent_8.png'
+                    duration: 8
+                    note: False
+                KeyboardButton:
+                    tag: 's16'
+                    background_normal: './images/key_silent_16.png'
+                    duration: 16
+                    note: False
+                KeyboardButton:
+                    tag: 's32'
+                    background_normal: './images/key_silent_32.png'
+                    duration: 32
+                    note: False
+                KeyboardButton:
+                    tag: 's64'
+                    background_normal: './images/key_silent_64.png'
+                    duration: 64
+                    note: False
+                KeyboardButton:
+                    background_normal: './images/key_repeat.png'
+                KeyboardButton:
+                    background_normal: './images/key_delete.png'
+                BoxLayout:
+            BoxLayout: ## forth keys row
+                size_hint_y: None
+                height: root.key_height + 10 + 10
+                padding: 10
+                spacing: 10
+                BoxLayout:
+                KeyboardButton:
+                    background_normal: './images/key_measure.png'
+                KeyboardButton:
+                    background_normal: './images/key_open_tuplet.png'
+                KeyboardButton:
+                    background_normal: './images/key_close_tuplet.png'
+                KeyboardButton:
+                    background_normal: './images/key_dot.png'
+                    note: None
+                    dureation: 1.5
+                KeyboardButton:
+                    size_hint: (None,None)
+                    size: (2*root.key_height+20, root.key_height)
+                    tag: 'space'
+                KeyboardButton:
+                    background_normal: './images/key_left.png'
+                    tag: 'go left'
+                KeyboardButton:
+                    background_normal: './images/key_right.png'
+                    tag: 'go right'
+                KeyboardButton:
+                    background_normal: './images/key_up.png'
+                    tag: 'go up'
+                KeyboardButton:
+                    background_normal: './images/key_down.png'
+                    tag: 'go down'
+                BoxLayout:
+
+<KeyboardButton>:
+    size_hint: (None,None)
+    size: (root.key_height, root.key_height)
+    background_color: 0.835*1.1, 0.714*1.1, 0.871*1.1, 1
+    background_down: self.background_normal
+    background_normal: './images/blank_key.png'
+    color: 0,0,0,1
+    font_size: 24
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    on_press: root.on_press_keyboard()
+    on_release: root.on_release_keyboard()
+<NotationImage>:
+    ##allow_strech: False
+    size_hint: None, None
+    size: self.norm_image_size
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    canvas.after:
+        Color:
+            rgba: 0,0,0,1
+        Line:
+            points:
+                self.x, self.y+14, self.x+self.width, self.y+14
