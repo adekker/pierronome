@@ -9,7 +9,7 @@ from kivy.uix.relativelayout import RelativeLayout
 from kivy.core.window import Window
 from kivy.core.audio import SoundLoader
 from kivy.lang import Builder
-kivy.require('2.2.1')
+kivy.require('2.3.0')
 
 sound_file = 'metronomekort.wav'  # "metronome-85688.wav"  # downloaded from https://pixabay.com/nl/sound-effects/search/metronoom/
 
